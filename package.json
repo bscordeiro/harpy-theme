@@ -1,0 +1,32 @@
+{
+  "name": "harpy-theme",
+  "version": "1.0.0",
+  "description": "Harpy theme for Pi — dark (harpy-noct) and light (harpy-insone) variants inspired by the Harpy eagle, apex predator of the Amazon",
+  "keywords": ["pi-package", "pi-theme", "harpy", "theme", "harpy-noct", "harpy-insone", "dark-theme", "light-theme"],
+  "license": "MIT",
+  "author": {
+    "name": "bscordeiro",
+    "url": "https://github.com/bscordeiro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bscordeiro/harpy-theme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bscordeiro/harpy-theme/issues"
+  },
+  "homepage": "https://github.com/bscordeiro/harpy-theme#readme",
+  "pi": {
+    "themes": ["./themes"],
+    "image": "https://raw.githubusercontent.com/bscordeiro/harpy-theme/main/assets/mockup-noct.svg"
+  },
+  "files": [
+    "themes/",
+    "assets/",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
