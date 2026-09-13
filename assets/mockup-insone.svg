@@ -2,17 +2,17 @@
   <defs>
     <style>
       .title { fill: #374151; font-size: 14px; font-weight: 700; }
-      .prompt { fill: #D81B60; font-size: 13px; }
+      .prompt { fill: #A91152; font-size: 13px; }
       .cmd { fill: #1A1A1A; font-size: 13px; }
-      .comment { fill: #6B7280; font-size: 12px; }
-      .keyword { fill: #D81B60; font-size: 13px; }
-      .func { fill: #1976D2; font-size: 13px; }
-      .type { fill: #00838F; font-size: 13px; }
-      .str { fill: #2E7D32; font-size: 13px; }
-      .var { fill: #F57C00; font-size: 13px; }
-      .num { fill: #E65100; font-size: 13px; }
-      .gray { fill: #6B7280; font-size: 13px; }
-      .label { fill: #6B7280; font-size: 11px; }
+      .comment { fill: #57606C; font-size: 12px; }
+      .keyword { fill: #A91152; font-size: 13px; }
+      .func { fill: #0F57AC; font-size: 13px; }
+      .type { fill: #00626B; font-size: 13px; }
+      .str { fill: #0B6B53; font-size: 13px; }
+      .var { fill: #8E4D00; font-size: 13px; }
+      .num { fill: #8E4D00; font-size: 13px; }
+      .gray { fill: #57606C; font-size: 13px; }
+      .label { fill: #57606C; font-size: 11px; }
       .heading { fill: #7B1FA2; font-size: 14px; font-weight: 700; }
     </style>
   </defs>
@@ -29,7 +29,7 @@
   <text x="400" y="24" text-anchor="middle" class="title">harpy-insone — pi coding agent</text>
 
   <!-- Thinking block -->
-  <rect x="20" y="50" width="760" height="32" rx="4" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1"/>
+  <rect x="20" y="50" width="760" height="32" rx="4" fill="#FFFFFF" stroke="#737A88" stroke-width="1"/>
   <text x="30" y="70" class="gray" font-style="italic">▸ thinking about your request...</text>
 
   <!-- Response -->
@@ -45,30 +45,30 @@
   <text x="40" y="248" class="gray" font-style="italic">  // Fetch users from the API</text>
 
   <!-- Tool execution -->
-  <rect x="30" y="285" width="740" height="28" rx="4" fill="#E8F5E9"/>
+  <rect x="30" y="285" width="740" height="28" rx="4" fill="#C8E6CE"/>
   <text x="40" y="304" class="gray">◉</text> <text x="54" y="304" class="func">read</text> <text x="82" y="304" class="gray">─ src/api/router.ts</text>
   <text x="480" y="304" class="gray" font-size="11px">(0.3s) ✓</text>
 
-  <rect x="30" y="318" width="740" height="28" rx="4" fill="#FFEBEE"/>
+  <rect x="30" y="318" width="740" height="28" rx="4" fill="#F3D2D7"/>
   <text x="40" y="337" class="gray">◉</text> <text x="54" y="337" class="func">grep</text> <text x="82" y="337" class="gray">─ "export class" ─ 3 matches</text>
   <text x="480" y="337" class="gray" font-size="11px">✗ 2 results</text>
 
   <!-- Prompt line -->
-  <rect x="20" y="365" width="760" height="34" rx="4" fill="none" stroke="#9CA3AF" stroke-width="1"/>
+  <rect x="20" y="365" width="760" height="34" rx="4" fill="none" stroke="#737A88" stroke-width="1"/>
   <text x="30" y="388" class="keyword">❯</text> <text x="46" y="388" class="cmd">continue with the implementation</text>
 
   <!-- Footer -->
   <rect x="0" y="420" width="800" height="60" fill="#FFFFFF" rx="0"/>
   <rect x="0" y="440" width="800" height="40" fill="#FFFFFF"/>
-  <rect x="20" y="430" width="120" height="24" rx="4" fill="#ECEFF4"/>
+  <rect x="20" y="430" width="120" height="24" rx="4" fill="#E6EAF0"/>
   <text x="28" y="446" class="label">● thinking: high</text>
-  <rect x="155" y="430" width="160" height="24" rx="4" fill="#ECEFF4"/>
+  <rect x="155" y="430" width="160" height="24" rx="4" fill="#E6EAF0"/>
   <text x="163" y="446" class="label">◆ model: claude-4-opus</text>
-  <rect x="330" y="430" width="200" height="24" rx="4" fill="#ECEFF4"/>
+  <rect x="330" y="430" width="200" height="24" rx="4" fill="#E6EAF0"/>
   <text x="338" y="446" class="label">■ context: 48% (62k/128k)</text>
-  <rect x="545" y="430" width="80" height="24" rx="4" fill="#ECEFF4"/>
+  <rect x="545" y="430" width="80" height="24" rx="4" fill="#E6EAF0"/>
   <text x="553" y="446" class="label">◇ 3 tools</text>
 
   <!-- Thinking level border (left edge) -->
-  <rect x="0" y="50" width="4" height="32" fill="#D50000" opacity="0.6"/>
+  <rect x="0" y="50" width="4" height="32" fill="#9F35C1" opacity="0.6"/>
 </svg>

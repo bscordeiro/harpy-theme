@@ -16,29 +16,29 @@
   <rect x="30" y="50" width="60" height="60" rx="6" fill="#9B8BF4"/>
   <text x="30" y="130" fill="#e4e4e7" font-size="11px" font-weight="700">Harpy Violet</text>
   <text x="30" y="145" class="hex">#9B8BF4</text>
-  <text x="30" y="160" fill="#7F869E" font-size="10px">accent · headings</text>
+  <text x="30" y="160" fill="#8DA4B9" font-size="10px">accent · headings</text>
 
   <!-- Harpy Pink -->
-  <rect x="210" y="50" width="60" height="60" rx="6" fill="#F04282"/>
+  <rect x="210" y="50" width="60" height="60" rx="6" fill="#FA569A"/>
   <text x="210" y="130" fill="#e4e4e7" font-size="11px" font-weight="700">Harpy Pink</text>
-  <text x="210" y="145" class="hex">#F04282</text>
-  <text x="210" y="160" fill="#7F869E" font-size="10px">keywords · operators</text>
+  <text x="210" y="145" class="hex">#FA569A</text>
+  <text x="210" y="160" fill="#8DA4B9" font-size="10px">keywords</text>
 
   <!-- Harpy Teal -->
-  <rect x="390" y="50" width="60" height="60" rx="6" fill="#4ED4E8"/>
+  <rect x="390" y="50" width="60" height="60" rx="6" fill="#6ECBD5"/>
   <text x="390" y="130" fill="#e4e4e7" font-size="11px" font-weight="700">Harpy Teal</text>
-  <text x="390" y="145" class="hex">#4ED4E8</text>
-  <text x="390" y="160" fill="#7F869E" font-size="10px">types · tools · borders</text>
+  <text x="390" y="145" class="hex">#6ECBD5</text>
+  <text x="390" y="160" fill="#8DA4B9" font-size="10px">types · tools · borders</text>
 
   <!-- Harpy Blue -->
   <rect x="570" y="50" width="60" height="60" rx="6" fill="#5FA0DE"/>
   <text x="570" y="130" fill="#e4e4e7" font-size="11px" font-weight="700">Harpy Blue</text>
   <text x="570" y="145" class="hex">#5FA0DE</text>
-  <text x="570" y="160" fill="#7F869E" font-size="10px">functions · links</text>
+  <text x="570" y="160" fill="#8DA4B9" font-size="10px">functions · links</text>
 
   <!-- Background swatch -->
   <rect x="30" y="180" width="30" height="20" rx="3" fill="#121212" stroke="#333" stroke-width="1"/>
   <rect x="70" y="180" width="30" height="20" rx="3" fill="#171B22" stroke="#333" stroke-width="1"/>
-  <rect x="110" y="180" width="30" height="20" rx="3" fill="#1F2430" stroke="#333" stroke-width="1"/>
-  <rect x="150" y="180" width="30" height="20" rx="3" fill="#2D3748" stroke="#333" stroke-width="1"/>
+  <rect x="110" y="180" width="30" height="20" rx="3" fill="#232936" stroke="#333" stroke-width="1"/>
+  <rect x="150" y="180" width="30" height="20" rx="3" fill="#2B3445" stroke="#333" stroke-width="1"/>
 </svg>

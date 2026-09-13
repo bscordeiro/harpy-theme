@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Harpy theme for Pi — dark (harpy-noct) and light (harpy-insone) variants inspired by the Harpy eagle, apex predator of the Amazon",
   "keywords": ["pi-package", "pi-theme", "harpy", "theme", "harpy-noct", "harpy-insone", "dark-theme", "light-theme"],
+  "scripts": {
+    "test": "node test/check-contrast.mjs"
+  },
   "license": "MIT",
   "author": {
     "name": "bscordeiro",
@@ -22,6 +25,7 @@
   },
   "files": [
     "themes/",
+    "scripts/",
     "assets/",
     "README.md",
     "LICENSE"

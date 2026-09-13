@@ -2,7 +2,7 @@
   <defs>
     <style>
       .title { fill: #374151; font-size: 13px; }
-      .hex { fill: #6B7280; font-size: 11px; }
+      .hex { fill: #57606C; font-size: 11px; }
     </style>
   </defs>
 
@@ -16,29 +16,29 @@
   <rect x="30" y="50" width="60" height="60" rx="6" fill="#7B1FA2"/>
   <text x="30" y="130" fill="#1A1A1A" font-size="11px" font-weight="700">Harpy Violet</text>
   <text x="30" y="145" class="hex">#7B1FA2</text>
-  <text x="30" y="160" fill="#6B7280" font-size="10px">accent · headings</text>
+  <text x="30" y="160" fill="#57606C" font-size="10px">accent · headings</text>
 
   <!-- Harpy Pink -->
-  <rect x="210" y="50" width="60" height="60" rx="6" fill="#D81B60"/>
+  <rect x="210" y="50" width="60" height="60" rx="6" fill="#A91152"/>
   <text x="210" y="130" fill="#1A1A1A" font-size="11px" font-weight="700">Harpy Pink</text>
-  <text x="210" y="145" class="hex">#D81B60</text>
-  <text x="210" y="160" fill="#6B7280" font-size="10px">keywords · operators</text>
+  <text x="210" y="145" class="hex">#A91152</text>
+  <text x="210" y="160" fill="#57606C" font-size="10px">keywords</text>
 
   <!-- Harpy Teal -->
-  <rect x="390" y="50" width="60" height="60" rx="6" fill="#00838F"/>
+  <rect x="390" y="50" width="60" height="60" rx="6" fill="#00626B"/>
   <text x="390" y="130" fill="#1A1A1A" font-size="11px" font-weight="700">Harpy Teal</text>
-  <text x="390" y="145" class="hex">#00838F</text>
-  <text x="390" y="160" fill="#6B7280" font-size="10px">types · tools · borders</text>
+  <text x="390" y="145" class="hex">#00626B</text>
+  <text x="390" y="160" fill="#57606C" font-size="10px">types · tools · borders</text>
 
   <!-- Harpy Blue -->
-  <rect x="570" y="50" width="60" height="60" rx="6" fill="#1976D2"/>
+  <rect x="570" y="50" width="60" height="60" rx="6" fill="#0F57AC"/>
   <text x="570" y="130" fill="#1A1A1A" font-size="11px" font-weight="700">Harpy Blue</text>
-  <text x="570" y="145" class="hex">#1976D2</text>
-  <text x="570" y="160" fill="#6B7280" font-size="10px">functions · links</text>
+  <text x="570" y="145" class="hex">#0F57AC</text>
+  <text x="570" y="160" fill="#57606C" font-size="10px">functions · links</text>
 
   <!-- Background swatch -->
   <rect x="30" y="180" width="30" height="20" rx="3" fill="#F5F5F7" stroke="#D1D5DB" stroke-width="1"/>
   <rect x="70" y="180" width="30" height="20" rx="3" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
-  <rect x="110" y="180" width="30" height="20" rx="3" fill="#ECEFF4" stroke="#D1D5DB" stroke-width="1"/>
-  <rect x="150" y="180" width="30" height="20" rx="3" fill="#E3F2FD" stroke="#D1D5DB" stroke-width="1"/>
+  <rect x="110" y="180" width="30" height="20" rx="3" fill="#E6EAF0" stroke="#D1D5DB" stroke-width="1"/>
+  <rect x="150" y="180" width="30" height="20" rx="3" fill="#C9E2F6" stroke="#D1D5DB" stroke-width="1"/>
 </svg>

@@ -20,7 +20,21 @@ Inspired by the harpy eagle, apex predator of the Amazon rainforest — **power,
 
 ---
 
+## Validation
+
+Contrast and semantic separation are enforced by `test/check-contrast.mjs`:
+
+```bash
+npm test
+```
+
+Normal text tokens must pass ≥ 4.5:1 against every surface they may occupy; tertiary tokens must pass ≥ 3:1.
+Status hues (success/error/warning) are reserved for status semantics — syntax strings/numbers
+use distinct colors, and ramp levels use a violet progression instead of alarm reds.
+
 ## Installation
+
+From npm:
 
 ```bash
 pi install npm:harpy-theme
@@ -42,9 +56,9 @@ The 4 exclusive colors that make harpy-theme recognizable:
 | Color | Dark | Light | Usage |
 |-------|------|-------|-------|
 | 🔮 **Harpy Violet** | `#9B8BF4` | `#7B1FA2` | Accent, headings, selections |
-| 🌸 **Harpy Pink** | `#F04282` | `#D81B60` | Keywords, operators, labels |
-| 🦚 **Harpy Teal** | `#4ED4E8` | `#00838F` | Types, tools, borders, bullets |
-| 🌊 **Harpy Blue** | `#5FA0DE` | `#1976D2` | Functions, links |
+| 🌸 **Harpy Pink** | `#FA569A` | `#A91152` | Keywords, labels |
+| 🦚 **Harpy Teal** | `#6ECBD5` | `#00626B` | Types, tools, borders, bullets |
+| 🌊 **Harpy Blue** | `#5FA0DE` | `#0F57AC` | Functions, links |
 
 ### Palettes
 
@@ -60,14 +74,14 @@ Background & surface colors (dark → light):
 
   Background  ████████  #121212  #F5F5F7
   Surface     ████████  #171B22  #FFFFFF
-  SurfaceAlt  ████████  #1F2430  #ECEFF4
-  Selection   ████████  #2D3748  #E3F2FD
+  SurfaceAlt  ████████  #232936  #E6EAF0
+  Selection   ████████  #2B3445  #C9E2F6
 ```
 
 ## Highlights
 
-- **🔤 Typography** — contrast calibrated for long reading sessions without eye strain
-- **🌡️ Thinking ramp** — heat gradient (cool → warm → alarm) for thinking level indicators
+- **🔤 Typography** — normal text validated at ≥ 4.5:1; tertiary text at ≥ 3:1
+- **🌡️ Thinking ramp** — cool blue → violet progression for thinking level indicators
 - **🌙→☀️ Day & night** — dark and light variants sharing the same visual identity
 - **🦅 Brazilian identity** — crafted as a pi theme, inspired by Amazon wildlife
 
