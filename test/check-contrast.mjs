@@ -4,7 +4,7 @@
 // the palette of surface backgrounds it may sit on in the TUI.
 
 import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -44,13 +44,14 @@ const RULES = [
   { min: TERTIARY_MIN, bgs: PROXY_BG, tokens: ['mdHeading'] },
 ];
 
-// Equality forbidden: status hues reserved for status semantics.
+// Distinct semantic roles must not resolve to the same hex color.
 const FORBIDDEN_EQUAL = [
   ['success', 'syntaxString'],
   ['warning', 'syntaxNumber'],
   ['error', 'thinkingHigh'],
   ['error', 'thinkingXhigh'],
   ['error', 'thinkingMax'],
+  ['selectedBg', 'searchMatchBg'],
 ];
 
 const SEPARATION_PAIRS = [
@@ -59,6 +60,10 @@ const SEPARATION_PAIRS = [
   ['surfaceError', 'surface'],
   ['surfaceAlt', 'surface'],
 ];
+
+function isHexColor(value) {
+  return typeof value === 'string' && /^#[0-9a-f]{6}$/i.test(value);
+}
 
 function luminance(hex) {
   const rgb = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
@@ -71,27 +76,50 @@ function ratio(a, b) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-let failures = 0;
-
-for (const file of THEME_FILES) {
-  const theme = JSON.parse(readFileSync(join(root, file), 'utf8'));
+export function validateTheme(theme) {
+  const failures = [];
   const vars = theme.vars ?? {};
   const colors = theme.colors ?? {};
 
-  const resolve = (token) => {
-    const hex = /^#[0-9a-f]{6}$/i;
-    const walk = (v) => {
-      if (hex.test(v)) return v;
-      if (vars[v] === undefined) return null;
-      return walk(vars[v]);
-    };
-    return walk(colors[token]);
+  const resolveValue = (value, label) => {
+    const seen = new Set();
+    while (!isHexColor(value)) {
+      if (typeof value !== 'string' || !Object.hasOwn(vars, value)) return null;
+      if (seen.has(value)) {
+        report('cycle', `${label} references circular variable ${value}`);
+        return null;
+      }
+      seen.add(value);
+      value = vars[value];
+    }
+    return value;
   };
+  const resolve = (token) => resolveValue(colors[token], token);
 
   const report = (kind, msg) => {
-    failures++;
-    console.log(`FAIL ${theme.name} ${kind}: ${msg}`);
+    failures.push(`FAIL ${theme.name} ${kind}: ${msg}`);
   };
+
+  for (const bgName of PROXY_BG) {
+    if (!isHexColor(vars[bgName])) {
+      report('invalid', `${bgName} must be a six-digit hex color`);
+    }
+  }
+  for (const [name, value] of Object.entries(vars)) {
+    if (!resolveValue(value, name)) report('invalid', `${name} must resolve to a six-digit hex color`);
+  }
+  for (const token of Object.keys(colors)) {
+    if (!resolve(token)) report('invalid', `${token} must resolve to a six-digit hex color`);
+  }
+  if (theme.export) {
+    if (!Object.hasOwn(theme.export, 'infoBg')) report('missing', 'export.infoBg not defined');
+    for (const [name, value] of Object.entries(theme.export)) {
+      if (!isHexColor(value)) {
+        report('invalid', `export.${name} must be a six-digit hex color`);
+      }
+    }
+  }
+  if (failures.length > 0) return failures;
 
   for (const rule of RULES) {
     for (const token of rule.tokens) {
@@ -110,9 +138,20 @@ for (const file of THEME_FILES) {
     }
   }
 
+  const searchText = resolve('searchMatchText') ?? resolve('text');
+  const searchBg = resolve('searchMatchBg') ?? resolve('selectedBg');
+  if (searchText && searchBg) {
+    const value = ratio(searchText, searchBg);
+    if (value < TEXT_MIN) {
+      report('search', `searchMatchText (${searchText}) on searchMatchBg (${searchBg}) = ${value.toFixed(2)} < ${TEXT_MIN}`);
+    }
+  }
+
   for (const [a, b] of FORBIDDEN_EQUAL) {
-    if (resolve(a) && resolve(a) === resolve(b)) {
-      report('semantic', `${a} (${resolve(a)}) must not equal ${b}`);
+    const aColor = resolve(a);
+    const bColor = resolve(b);
+    if (aColor && bColor && aColor.toLowerCase() === bColor.toLowerCase()) {
+      report('semantic', `${a} (${aColor}) must not equal ${b}`);
     }
   }
 
@@ -125,15 +164,36 @@ for (const file of THEME_FILES) {
 
   if (theme.export) {
     const text = resolve('text');
-    const value = ratio(text, theme.export.infoBg);
-    if (text && value < TEXT_MIN) {
-      report('export', `text on export.infoBg (${theme.export.infoBg}) = ${value.toFixed(2)} < ${TEXT_MIN}`);
+    if (text) {
+      const value = ratio(text, theme.export.infoBg);
+      if (value < TEXT_MIN) {
+        report('export', `text on export.infoBg (${theme.export.infoBg}) = ${value.toFixed(2)} < ${TEXT_MIN}`);
+      }
+    }
+    const dim = resolve('dim');
+    for (const bgName of ['pageBg', 'cardBg']) {
+      const bg = theme.export[bgName];
+      if (!dim || !bg) continue;
+      const value = ratio(dim, bg);
+      if (value < TEXT_MIN) {
+        report('export', `dim (${dim}) on export.${bgName} (${bg}) = ${value.toFixed(2)} < ${TEXT_MIN}`);
+      }
     }
   }
+  return failures;
 }
 
-if (failures > 0) {
-  console.log(`\n${failures} contrast issue(s)`);
-  process.exit(1);
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  let failures = 0;
+  for (const file of THEME_FILES) {
+    const theme = JSON.parse(readFileSync(join(root, file), 'utf8'));
+    const issues = validateTheme(theme);
+    issues.forEach((issue) => console.log(issue));
+    failures += issues.length;
+  }
+  if (failures > 0) {
+    console.log(`\n${failures} contrast issue(s)`);
+    process.exit(1);
+  }
+  console.log('All contrast checks passed.');
 }
-console.log('All contrast checks passed.');

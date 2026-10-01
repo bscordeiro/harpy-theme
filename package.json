@@ -1,10 +1,11 @@
 {
   "name": "harpy-theme",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Harpy theme for Pi — dark (harpy-noct) and light (harpy-insone) variants inspired by the Harpy eagle, apex predator of the Amazon",
   "keywords": ["pi-package", "pi-theme", "harpy", "theme", "harpy-noct", "harpy-insone", "dark-theme", "light-theme"],
   "scripts": {
-    "test": "node test/check-contrast.mjs"
+    "test": "node --test test/check-contrast.test.mjs test/copy-to-themes.test.mjs",
+    "copy:themes": "node scripts/copy-to-themes.mjs"
   },
   "license": "MIT",
   "author": {

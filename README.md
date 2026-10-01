@@ -28,9 +28,13 @@ Contrast and semantic separation are enforced by `test/check-contrast.mjs`:
 npm test
 ```
 
+`npm test` runs validator regression tests and checks both theme variants. Validation rejects malformed colors, missing required backgrounds, undefined references, and variable cycles before evaluating contrast.
+
 Normal text tokens must pass ≥ 4.5:1 against every surface they may occupy; tertiary tokens must pass ≥ 3:1.
 Status hues (success/error/warning) are reserved for status semantics — syntax strings/numbers
 use distinct colors, and ramp levels use a violet progression instead of alarm reds.
+
+Search uses a dedicated violet highlight, distinct from the blue selection background, with text contrast ≥ 4.5:1. Optional search colors retain Pi's `text` and `selectedBg` fallbacks. Export metadata (`dim`) must pass ≥ 4.5:1 on explicit `pageBg` and `cardBg` backgrounds before browser opacity is applied. The light theme uses a darker metadata gray for better legibility.
 
 ## Installation
 
@@ -39,6 +43,16 @@ From npm:
 ```bash
 pi install npm:harpy-theme
 ```
+
+## Local development
+
+From a local checkout, copy the current themes into Pi's user theme directory:
+
+```bash
+npm run copy:themes
+```
+
+This creates `~/.pi/agent/themes` if needed and replaces only `harpy-noct.json` and `harpy-insone.json`. Other themes are left unchanged. Theme sources are resolved relative to the script, not the current working directory. Copying does not publish a package or modify Pi settings.
 
 ## Usage
 
