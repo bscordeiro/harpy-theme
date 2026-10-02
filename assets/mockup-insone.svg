@@ -10,7 +10,7 @@
       .type { fill: #00626B; font-size: 13px; }
       .str { fill: #0B6B53; font-size: 13px; }
       .var { fill: #8E4D00; font-size: 13px; }
-      .num { fill: #8E4D00; font-size: 13px; }
+      .num { fill: #9B4F3A; font-size: 13px; }
       .gray { fill: #57606C; font-size: 13px; }
       .label { fill: #57606C; font-size: 11px; }
       .heading { fill: #7B1FA2; font-size: 14px; font-weight: 700; }

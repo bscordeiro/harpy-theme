@@ -74,6 +74,14 @@ The 4 exclusive colors that make harpy-theme recognizable:
 | 🦚 **Harpy Teal** | `#6ECBD5` | `#00626B` | Types, tools, borders, bullets |
 | 🌊 **Harpy Blue** | `#5FA0DE` | `#0F57AC` | Functions, links |
 
+The dark variant keeps function blue (`#5C9CE6`) separate from signature link blue (`#5FA0DE`). Its success panels use `#1A2B1E` for a subtler green without lowering the existing surface-separation requirement.
+
+The light variant uses copper (`#9B4F3A`) for numbers, while variables retain amber (`#8E4D00`), making the two roles distinguishable.
+
+In **harpy-noct**, strings use warm ivory (`#D8D0A8`) instead of green to avoid green-on-green text in successful write/edit previews. This affects strings throughout syntax-highlighted code; success and error panels keep their green and red backgrounds.
+
+Split-diff extensions can derive additional highlight backgrounds. Base theme contrast checks do not guarantee contrast in those regions.
+
 ### Palettes
 
 | Variant | Palette |

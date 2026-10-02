@@ -22,6 +22,66 @@ for (const name of ['harpy-noct', 'harpy-insone']) {
   });
 }
 
+test('Noct success panel uses subtle green while preserving original function blue', () => {
+  const theme = loadTheme();
+  const resolve = (token) => theme.vars[theme.colors[token]] ?? theme.colors[token];
+  assert.equal(resolve('toolSuccessBg'), '#1A2B1E');
+  assert.equal(resolve('syntaxFunction'), '#5C9CE6');
+  assert.equal(resolve('mdLink'), '#5FA0DE');
+  const svg = readFileSync(new URL('../assets/mockup-noct.svg', import.meta.url), 'utf8');
+  assert.ok(svg.includes(`fill="${resolve('toolSuccessBg')}"`));
+  const functionFill = svg.match(/\.func\s*\{\s*fill:\s*(#[0-9a-f]{6})/i)?.[1];
+  assert.equal(functionFill, resolve('syntaxFunction'));
+});
+
+test('Noct strings stay readable on green diff highlights without changing status panels', () => {
+  const theme = loadTheme();
+  const resolve = (token) => theme.vars[theme.colors[token]] ?? theme.colors[token];
+  assert.equal(resolve('syntaxString'), '#D8D0A8');
+  assert.equal(resolve('toolSuccessBg'), '#1A2B1E');
+  assert.equal(resolve('toolErrorBg'), '#3B2230');
+
+  const svg = readFileSync(new URL('../assets/mockup-noct.svg', import.meta.url), 'utf8');
+  const stringFill = svg.match(/\.str\s*\{\s*fill:\s*(#[0-9a-f]{6})/i)?.[1];
+  assert.equal(stringFill, resolve('syntaxString'));
+
+  // pi-tool-display 0.5.0 derived row and inline highlight backgrounds.
+  for (const highlight of ['#263E26', '#33542E']) {
+    const againstHighlight = structuredClone(theme);
+    againstHighlight.vars.surfaceAlt = highlight;
+    assert.deepEqual(
+      validateTheme(againstHighlight).filter((issue) => issue.includes('syntaxString')),
+      [],
+      `syntaxString on diff highlight ${highlight}`,
+    );
+  }
+});
+
+test('Insone numbers use copper while variables retain original amber', () => {
+  const theme = loadTheme('harpy-insone');
+  const resolve = (token) => theme.vars[theme.colors[token]] ?? theme.colors[token];
+  assert.equal(resolve('syntaxNumber'), '#9B4F3A');
+  assert.equal(resolve('syntaxVariable'), '#8E4D00');
+  const svg = readFileSync(new URL('../assets/mockup-insone.svg', import.meta.url), 'utf8');
+  const numberFill = svg.match(/\.num\s*\{\s*fill:\s*(#[0-9a-f]{6})/i)?.[1];
+  assert.equal(numberFill, resolve('syntaxNumber'));
+});
+
+test('code block borders use neutral tones without changing other borders or comments', () => {
+  const expected = [
+    ['harpy-noct', '#94A0B0', '#8DA4B9'],
+    ['harpy-insone', '#5C6068', '#57606C'],
+  ];
+  for (const [name, codeBorder, originalComment] of expected) {
+    const theme = loadTheme(name);
+    const resolve = (token) => theme.vars[theme.colors[token]] ?? theme.colors[token];
+    assert.equal(resolve('mdCodeBlockBorder'), codeBorder, `${name}: code block border`);
+    for (const token of ['border', 'syntaxComment', 'mdQuoteBorder', 'muted']) {
+      assert.equal(resolve(token), originalComment, `${name}: ${token}`);
+    }
+  }
+});
+
 test('accepts chained foreground variable references', () => {
   const theme = loadTheme();
   theme.vars.textAlias = 'foreground';

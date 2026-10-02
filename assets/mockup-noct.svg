@@ -6,9 +6,9 @@
       .cmd { fill: #F8F8F2; font-size: 13px; }
       .comment { fill: #8DA4B9; font-size: 12px; }
       .keyword { fill: #FA569A; font-size: 13px; }
-      .func { fill: #5FA0DE; font-size: 13px; }
+      .func { fill: #5C9CE6; font-size: 13px; }
       .type { fill: #6ECBD5; font-size: 13px; }
-      .str { fill: #7CCEA8; font-size: 13px; }
+      .str { fill: #D8D0A8; font-size: 13px; }
       .var { fill: #D19A66; font-size: 13px; }
       .num { fill: #F5A97F; font-size: 13px; }
       .gray { fill: #8DA4B9; font-size: 13px; }
@@ -45,7 +45,7 @@
   <text x="40" y="248" class="gray" font-style="italic">  // Fetch users from the API</text>
 
   <!-- Tool execution -->
-  <rect x="30" y="285" width="740" height="28" rx="4" fill="#18211B"/>
+  <rect x="30" y="285" width="740" height="28" rx="4" fill="#1A2B1E"/>
   <text x="40" y="304" class="gray">◉</text> <text x="54" y="304" class="func">read</text> <text x="82" y="304" class="gray">─ src/api/router.ts</text>
   <text x="480" y="304" class="gray" font-size="11px">(0.3s) ✓</text>
 
